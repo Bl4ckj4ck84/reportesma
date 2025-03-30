@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reportes Ambientales</title>
+    <link rel="stylesheet" href="{% static 'reportes/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Reportes Ambientales</h1>
+        <nav>
+            <ul>
+                
+                <li><a href="/api/medidas-avance/">Medidas de Avance</a></li>
+                <li><a href="/api/organismos-sectoriales/">Organismos Sectoriales</a></li>
+                <li><a href="/api/planes-ppda/">Planes PPDA</a></li>
+                <li><a href="/api/indicadores/">Indicadores</a></li>
+                <li><a href="https://snifa.sma.gob.cl/Resolucion/Instruccion">Instrucciones en SNIFA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="organismos">
+            <h2>Organismos Sectoriales</h2>
+            <button id="fetch-organismos">Cargar Organismos</button>
+            <div id="organismos-list"></div>
+        </section>
+
+        <section id="ppda">
+            <h2>Planes PPDA</h2>
+            <button id="fetch-ppda">Cargar Planes PPDA</button>
+            <div id="ppda-list"></div>
+        </section>
+
+        <section id="medidas">
+            <h2>Medidas de Avance</h2>
+            <button id="fetch-medidas">Cargar Medidas</button>
+            <div id="medidas-list"></div>
+        </section>
+    </main>
+
+    <script src="{% static 'reportes/js/main.js' %}"></script>
+</body>
+</html>
