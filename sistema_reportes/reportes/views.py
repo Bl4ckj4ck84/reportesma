@@ -56,6 +56,11 @@ class ReporteAnualViewSet(viewsets.ModelViewSet):
 def frontend_view(request):
     return render(request, 'reportes/index.html')
 
+def login_view(request):
+    return render(request, 'reportes/login.html')
+
+
+
 def guardar_datos_snifa(datos):
     for dato in datos:
         if not all(key in dato for key in ['parametro', 'valor']):
@@ -93,6 +98,8 @@ def guardar_datos_airecoo(datos):
             organismo_sectorial_id=1
         )
         indicador.save()
+        
+
 
 @api_view(['POST'])
 @permission_classes([EsSMAPermission])

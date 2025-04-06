@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import permissions
@@ -7,6 +6,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from reportes.views import frontend_view
 from reportes.views import integrar_snifa
+from auth_app.views import LoginAPIView, login_page
 
 
 schema_view = get_schema_view(
@@ -29,5 +29,7 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('frontend/', frontend_view, name='frontend'),
-    path('integrar-snifa/', integrar_snifa, name='integrar_snifa')
+    path('integrar-snifa/', integrar_snifa, name='integrar_snifa'),
+    path('auth/', include('auth_app.urls')),
+    path('', login_page, name='login'),
 ]
