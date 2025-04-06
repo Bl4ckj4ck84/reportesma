@@ -68,14 +68,33 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sistema_reportes.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'sistema_reportes1',
+#         'USER': 'postgres',
+#         'PASSWORD': 'nirvana1',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
+
+# # # --local
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_USERNAME=root   
+# DB_PASSWORD=root
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sistema_reportes1',
-        'USER': 'postgres',
-        'PASSWORD': 'nirvana1',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'reportes_sma',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
