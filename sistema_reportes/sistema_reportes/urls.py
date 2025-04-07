@@ -31,5 +31,6 @@ urlpatterns = [
     path('frontend/', frontend_view, name='frontend'),
     path('integrar-snifa/', integrar_snifa, name='integrar_snifa'),
     path('auth/', include('auth_app.urls')),
+    path('api/login/', LoginAPIView.as_view(), name='api-login'),
     path('', login_page, name='login'),
 ]

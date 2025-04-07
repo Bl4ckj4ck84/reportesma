@@ -12,7 +12,7 @@
         <h1>Sistema de Reportes Ambientales</h1>
         <section id="login">
             <h2>Iniciar Sesión</h2>
-            <form method="post" action="{% url 'login' %}">
+            <form id="login-form">
                 {% csrf_token %}
                 <div>
                     <label for="username">Usuario:</label>
@@ -24,9 +24,44 @@
                 </div>
                 <button type="submit">Iniciar Sesión</button>
             </form>
+            <p id="error-message" style="color: red; display: none;">Credenciales inválidas.</p>
         </section>
     </main>
 
     <script src="{% static 'reportes/js/main.js' %}"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();  // Evita que el formulario se envíe de forma tradicional
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('/api/login/', {  // URL del endpoint de login
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.token) {
+                    // Almacena el token JWT en localStorage o cookie
+                    localStorage.setItem('auth_token', data.token);
+                    window.location.href = '/frontend/';  // Redirige a la página principal después de login
+                } else {
+                    document.getElementById('error-message').style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('error-message').style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
